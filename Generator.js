@@ -66,7 +66,7 @@ module.exports = {
       attributes: scope.args.slice(1)
     });
 
-    //Get the optional modelAttributeNames and validate them
+    //Get the optional model attributes and validate them
     var attributes = scope.attributes;
     var invalidAttributes = [];
 
@@ -89,11 +89,15 @@ module.exports = {
 
     });
 
+    // Add the option model attributes to the scope
     _.defaults(scope, {
       modelAttributes: attributes
     });
 
-    console.log("These are the scope.modelAttributes: ", scope.modelAttributes);
+    // Pluck just the name values
+    var modelAttributeNames = _.pluck(scope.modelAttributes, 'name');
+
+    console.log("These are the modelAttributeNames: ", modelAttributeNames);
 
 
     // Read in the action.template located in spar/templates
