@@ -55,7 +55,18 @@ module.exports = {
       return cb( INVALID_SCOPE_VARIABLE('rootPath') );
     }
 
-    
+    // Attach defaults
+    _.defaults(scope, {
+      id: _.str.capitalize(scope.args[0]),
+
+      modelControllerName: scope.args[0],
+
+      attributes: scope.args.slice(1)
+    });
+
+    console.log("This is the id: ", scope.id);
+    console.log("This is the modelControllerName: ", scope.modelControllerName);
+    console.log("These are the attributes: ", scope.attributes);
 
     // When finished, we trigger a callback with no error
     // to begin generating files/folders as specified by
