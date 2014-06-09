@@ -52,17 +52,7 @@ module.exports = {
       return cb( INVALID_SCOPE_VARIABLE('rootPath') );
     }
 
-
-    // Attach defaults
-    _.defaults(scope, {
-      createdAt: new Date()
-    });
-
-    // Decide the output filename for use in targets below:
-    scope.filename = scope.args[0];
-
-    // Add other stuff to the scope for use in our templates:
-    scope.whatIsThis = 'an example file created at '+scope.createdAt;
+    
 
     // When finished, we trigger a callback with no error
     // to begin generating files/folders as specified by
@@ -82,16 +72,7 @@ module.exports = {
     // Usage:
     // './path/to/destination.foo': { someHelper: opts }
 
-    // Creates a dynamically-named file relative to `scope.rootPath`
-    // (defined by the `filename` scope variable).
-    //
-    // The `template` helper reads the specified template, making the
-    // entire scope available to it (uses underscore/JST/ejs syntax).
-    // Then the file is copied into the specified destination (on the left).
-    './:filename': { template: 'example.template.js' },
-
-    // Creates a folder at a static path
-    './hey_look_a_folder': { folder: {} }
+    
 
   },
 

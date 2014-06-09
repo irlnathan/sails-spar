@@ -50,7 +50,7 @@ See `FAQ.md`.
 ### License
 
 **[MIT](./LICENSE)**
-&copy; 2014 [balderdashy](http://github.com/balderdashy) & contributors
+&copy; 2014 [irlnathan](http://github.com/irlnathan) & contributors
 
 As for [Sails](http://sailsjs.org)?  It's free and open-source under the [MIT License](http://sails.mit-license.org/).
 
