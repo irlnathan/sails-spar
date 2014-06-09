@@ -100,7 +100,22 @@ module.exports = {
     // Add the optional model attribute names to the scope
     _.defaults(scope, {
       modelAttributeNames: modelAttributeNames
-    });    
+    });   
+
+    // Read in the newFormFields.template located in spar/templates
+    var NEW_FORM_FIELDS_TEMPLATE = path.resolve(__dirname, './templates/newFormFields.template');
+    NEW_FORM_FIELDS_TEMPLATE = fs.readFileSync(NEW_FORM_FIELDS_TEMPLATE, 'utf8');
+
+    var compiledNewFormFields = _.template(NEW_FORM_FIELDS_TEMPLATE, {
+      modelAttributeNames: scope.modelAttributeNames,
+      id: scope.id,
+      modelControllerName: scope.modelControllerName
+    })
+
+    // Add the compiled show form fields to the scope
+    _.defaults(scope, {
+      compiledNewFormFields: compiledNewFormFields
+    });     
 
 
     // Read in the showFormFields.template located in spar/templates
@@ -112,6 +127,9 @@ module.exports = {
       id: scope.id,
       modelControllerName: scope.modelControllerName
     })
+
+    compiledShowFormFields = compiledShowFormFields.replace(/ERBstart/g, '<%=')
+    compiledShowFormFields = compiledShowFormFields.replace(/ERBend/g, '%>')
 
     // Add the compiled show form fields to the scope
     _.defaults(scope, {
