@@ -66,9 +66,35 @@ module.exports = {
       attributes: scope.args.slice(1)
     });
 
-    // console.log("This is the id: ", scope.id);
-    // console.log("This is the modelControllerName: ", scope.modelControllerName);
-    // console.log("These are the attributes: ", scope.attributes);
+    //Get the optional modelAttributeNames and validate them
+    var attributes = scope.attributes;
+    var invalidAttributes = [];
+
+    attributes = _.map(attributes, function(attribute, i) {
+
+      var parts = attribute.split(':');
+
+      if (parts[1] === undefined) parts[1] = 'string';
+
+      // Handle invalidAttributes
+      if (!parts[1] || !parts[0]) {
+        invalidAttributes.push(
+          'Invalid attribute notation:   "' + attribute + '"');
+        return;
+      }
+      return {
+        name: parts[0],
+        type: parts[1]
+      };
+
+    });
+
+    _.defaults(scope, {
+      modelAttributes: attributes
+    });
+
+    console.log("These are the scope.modelAttributes: ", scope.modelAttributes);
+
 
     // Read in the action.template located in spar/templates
 
@@ -102,7 +128,11 @@ module.exports = {
     // './path/to/destination.foo': { someHelper: opts }
 
     // Build up the model and controller files
-    './': ['model', 'controller']
+    './': ['model', 'controller'],
+
+    './views/:id/new.ejs': {template: 'new.template' },
+
+    './views/:id/show.ejs': {template: 'show.template' }
 
   },
 

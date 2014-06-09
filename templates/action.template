@@ -3,7 +3,7 @@
     res.view();    
   },
 
-  create: function(req, res, next) {
+  create: function(req, res) {
 
     // var userObj = {
     //   name: req.param('name'),
@@ -17,16 +17,29 @@
 
     // Create a User with the params sent from 
     // the sign-up form --> new.ejs
-    <%= id %>.create(paramObj, function userCreated(err, <%= modelControllerName %>) {
+    <%= id %>.create(paramObj, function <%= modelControllerName %>Created(err, <%= modelControllerName %>) {
 
       if (err) {
 
         // If error redirect back to sign-up page
-        return res.redirect('/user/new');
+        return res.redirect('/<%= modelControllerName %>/new');
       }
 
-      res.json(user);
+      // res.json(<%= modelControllerName %>);
+      res.redirect('/<%= modelControllerName %>/show/' + <%= modelControllerName %>.id);
 
     });
   },
+
+  show: function(req, res, next) {
+    <%= id %>.findOne(req.param('id'), function found<%= id %>(err, <%= modelControllerName %>) {
+      if (err) return next(err);
+      if (!<%= modelControllerName %>) return next();
+
+      // res.json(<%= modelControllerName %>);
+      res.view({
+        <%= modelControllerName %>: <%= modelControllerName %>
+      });
+    });
+  }
  

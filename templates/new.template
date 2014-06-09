@@ -1,0 +1,14 @@
+<form action="/<%= modelControllerName %>/create" method="POST" id="sign-up-form" class="form-signin">
+	<h2 class="form-signin-heading">Create an account</h2>
+	
+	<div class="control-group">
+	<input type="text" class="form-control" placeholder="your name" name="name">
+	</div>
+	
+	<div class="control-group">
+	<input type="text" class="form-control" placeholder="email address" name="email">
+	</div>
+
+	<input type="submit" class="btn btn-lg btn-primary btn-block" value="Create Account"/>
+	
+</form>
