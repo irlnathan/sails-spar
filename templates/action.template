@@ -1,0 +1,32 @@
+
+  'new': function(req,res){
+    res.view();    
+  },
+
+  create: function(req, res, next) {
+
+    // var userObj = {
+    //   name: req.param('name'),
+    //   title: req.param('title'),
+    //   email: req.param('email'),
+    //   password: req.param('password'),
+    //   confirmation: req.param('confirmation')
+    // }
+
+    var paramObj = req.allParams();
+
+    // Create a User with the params sent from 
+    // the sign-up form --> new.ejs
+    <%= id %>.create(paramObj, function userCreated(err, <%= modelControllerName %>) {
+
+      if (err) {
+
+        // If error redirect back to sign-up page
+        return res.redirect('/user/new');
+      }
+
+      res.json(user);
+
+    });
+  },
+ 

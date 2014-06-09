@@ -64,9 +64,14 @@ module.exports = {
       attributes: scope.args.slice(1)
     });
 
-    console.log("This is the id: ", scope.id);
-    console.log("This is the modelControllerName: ", scope.modelControllerName);
-    console.log("These are the attributes: ", scope.attributes);
+    // console.log("This is the id: ", scope.id);
+    // console.log("This is the modelControllerName: ", scope.modelControllerName);
+    // console.log("These are the attributes: ", scope.attributes);
+
+    // Read in the action.template located in spar/templates
+
+    var ACTION_TEMPLATE = path.resolve(__dirname, './templates/action.template');
+    ACTION_TEMPLATE = fs.readFileSync(ACTION_TEMPLATE, 'utf8');
 
     // When finished, we trigger a callback with no error
     // to begin generating files/folders as specified by
