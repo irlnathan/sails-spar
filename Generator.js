@@ -57,12 +57,16 @@ module.exports = {
 
     // Attach defaults
     _.defaults(scope, {
+
+      // $sails generate spar user  --> id returns User
       id: _.str.capitalize(scope.args[0]),
 
+      // $sails generate spar user  --> modelControllerName returns user
       modelControllerName: scope.args[0],
 
       actions: [],
 
+      // $sails generate spar user  name:string email:email --> scope.args.slice(1) returns ['name:string','email:email']
       attributes: scope.args.slice(1)
     });
 
@@ -102,7 +106,8 @@ module.exports = {
       modelAttributeNames: modelAttributeNames
     });   
 
-    // Read in the newFormFields.template located in spar/templates
+    // This generates a template using the newFormFields.template located in spar/templates
+    // combined with modelAttributeNames to produce form fields for the new view derived from the model attributes
     var NEW_FORM_FIELDS_TEMPLATE = path.resolve(__dirname, './templates/newFormFields.template');
     NEW_FORM_FIELDS_TEMPLATE = fs.readFileSync(NEW_FORM_FIELDS_TEMPLATE, 'utf8');
 
@@ -112,13 +117,14 @@ module.exports = {
       modelControllerName: scope.modelControllerName
     })
 
-    // Add the compiled show form fields to the scope
+    // Add the compiled new form fields to the scope
     _.defaults(scope, {
       compiledNewFormFields: compiledNewFormFields
     });     
 
 
-    // Read in the showFormFields.template located in spar/templates
+    // This generates a template using the showFormFields.template located in spar/templates
+    // combined with modelAttributeNames to produce form fields for the show view derived from the model attributes
     var SHOW_FORM_FIELDS_TEMPLATE = path.resolve(__dirname, './templates/showFormFields.template');
     SHOW_FORM_FIELDS_TEMPLATE = fs.readFileSync(SHOW_FORM_FIELDS_TEMPLATE, 'utf8');
 
@@ -128,6 +134,7 @@ module.exports = {
       modelControllerName: scope.modelControllerName
     })
 
+    // This puts erb style delimeters in the show view
     compiledShowFormFields = compiledShowFormFields.replace(/ERBstart/g, '<%=')
     compiledShowFormFields = compiledShowFormFields.replace(/ERBend/g, '%>')
 
@@ -137,7 +144,8 @@ module.exports = {
     }); 
 
     
-    // Read in the action.template located in spar/templates
+    // This generates a template using the action.template located in spar/templates
+    // combined with CRUD actions to produce a controller.
     var ACTION_TEMPLATE = path.resolve(__dirname, './templates/action.template');
     ACTION_TEMPLATE = fs.readFileSync(ACTION_TEMPLATE, 'utf8');
 
