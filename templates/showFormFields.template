@@ -1,3 +1,3 @@
 <% _.forEach(modelAttributeNames, function (name) { %>
-	<h1> ERBstart <%= modelControllerName %>.<%= name %> ERBend </h1>
+	<h1><%= name %>:  ERBstart <%= modelControllerName %>.<%= name %> ERBend </h1>
 <% }) %>

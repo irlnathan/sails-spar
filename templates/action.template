@@ -7,8 +7,6 @@
 
     <%= compliledActionParamObject %>
 
-    var paramObj = req.allParams();
-
     // Create a User with the params sent from 
     // the sign-up form --> new.ejs
     <%= id %>.create(paramObj, function <%= modelControllerName %>Created(err, <%= modelControllerName %>) {

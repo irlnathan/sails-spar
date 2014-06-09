@@ -160,9 +160,9 @@ module.exports = {
     ACTION_TEMPLATE = fs.readFileSync(ACTION_TEMPLATE, 'utf8');
 
     var compliledActions = _.template(ACTION_TEMPLATE, {
-
+        compliledActionParamObject: compliledActionParamObject,
         id: scope.id,
-        modelControllerName: scope.modelControllerName
+        modelControllerName: scope.modelControllerName,
     })
 
     scope.actionFns = [compliledActions]
