@@ -4,7 +4,10 @@
 
 var util = require('util');
 var _ = require('lodash');
+var fs = require('fs');
+var path = require('path');
 _.defaults = require('merge-defaults');
+_.str = require('underscore.string');
 
 
 /**
