@@ -1,0 +1,33 @@
+{
+  "name": "sails-generate-spar",
+  "version": "0.0.1",
+  "description": "sails generate spar",
+  "main": "Generator.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "spar",
+    "generator",
+    "sails",
+    "generate",
+    "plugin"
+  ],
+  "author": "Irl Nathan",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": ">=2.4.x",
+    "merge-defaults": ">=0.1.0",
+    "underscore.string": "^2.3.3"
+  },
+  "devDependencies": {
+    "sails-generate": "*",
+    "reportback": "*",
+    "fs-extra": "*"
+  },
+  "sailsGenerator": {
+    "type": "spar",
+    "behavior": "overrides `sails generate spar`",
+    "sailsVersion": "~0.10.0"
+  }
+}
