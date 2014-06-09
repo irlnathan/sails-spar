@@ -5,13 +5,7 @@
 
   create: function(req, res) {
 
-    // var userObj = {
-    //   name: req.param('name'),
-    //   title: req.param('title'),
-    //   email: req.param('email'),
-    //   password: req.param('password'),
-    //   confirmation: req.param('confirmation')
-    // }
+    <%= compliledActionParamObject %>
 
     var paramObj = req.allParams();
 
