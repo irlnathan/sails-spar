@@ -89,7 +89,7 @@ module.exports = {
 
     });
 
-    // Add the option model attributes to the scope
+    // Add the optional model attributes to the scope
     _.defaults(scope, {
       modelAttributes: attributes
     });
@@ -97,11 +97,29 @@ module.exports = {
     // Pluck just the name values
     var modelAttributeNames = _.pluck(scope.modelAttributes, 'name');
 
-    console.log("These are the modelAttributeNames: ", modelAttributeNames);
+    // Add the optional model attribute names to the scope
+    _.defaults(scope, {
+      modelAttributeNames: modelAttributeNames
+    });    
 
 
+    // Read in the showFormFields.template located in spar/templates
+    var SHOW_FORM_FIELDS_TEMPLATE = path.resolve(__dirname, './templates/showFormFields.template');
+    SHOW_FORM_FIELDS_TEMPLATE = fs.readFileSync(SHOW_FORM_FIELDS_TEMPLATE, 'utf8');
+
+    var compiledShowFormFields = _.template(SHOW_FORM_FIELDS_TEMPLATE, {
+      modelAttributeNames: scope.modelAttributeNames,
+      id: scope.id,
+      modelControllerName: scope.modelControllerName
+    })
+
+    // Add the compiled show form fields to the scope
+    _.defaults(scope, {
+      compiledShowFormFields: compiledShowFormFields
+    }); 
+
+    
     // Read in the action.template located in spar/templates
-
     var ACTION_TEMPLATE = path.resolve(__dirname, './templates/action.template');
     ACTION_TEMPLATE = fs.readFileSync(ACTION_TEMPLATE, 'utf8');
 
