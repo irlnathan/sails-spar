@@ -61,6 +61,8 @@ module.exports = {
 
       modelControllerName: scope.args[0],
 
+      actions: [],
+
       attributes: scope.args.slice(1)
     });
 
@@ -72,6 +74,14 @@ module.exports = {
 
     var ACTION_TEMPLATE = path.resolve(__dirname, './templates/action.template');
     ACTION_TEMPLATE = fs.readFileSync(ACTION_TEMPLATE, 'utf8');
+
+    var compliledActions = _.template(ACTION_TEMPLATE, {
+
+        id: scope.id,
+        modelControllerName: scope.modelControllerName
+    })
+
+    scope.actionFns = [compliledActions]
 
     // When finished, we trigger a callback with no error
     // to begin generating files/folders as specified by
@@ -91,7 +101,8 @@ module.exports = {
     // Usage:
     // './path/to/destination.foo': { someHelper: opts }
 
-    
+    // Build up the model and controller files
+    './': ['model', 'controller']
 
   },
 
