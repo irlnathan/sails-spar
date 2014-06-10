@@ -1,0 +1,12 @@
+		<% _.forEach(modelAttributeNames, function(name) { %>
+		<tr data-id="ERBstart<%= modelControllerName %>.id ERBend" data-model="<%= modelControllerName %>">
+			<td>ERBstart <%= modelControllerName %>.<%= name %>ERBend</td>
+			<td><a href="/<%= modelControllerName %>/show/ERBstart<%= modelControllerName %>.id ERBend " class="btn btn-sm btn-primary">Show</a></td>
+			<td><a href="/<%= modelControllerName %>/edit/<%= modelControllerName.id %>" class="btn btn-sm btn-warning">Edit</a></td>
+
+			<td><form action="/<%= modelControllerName %>/destroy/<%= modelControllerName.id %>" method="POST">
+				<input type="hidden" name="_method" value="delete"/>
+				<input type="submit" class="btn btn-sm btn-danger" value="Delete"/>
+			</form></td>
+		</tr>
+		<% }) %>

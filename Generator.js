@@ -143,6 +143,49 @@ module.exports = {
       compiledShowFormFields: compiledShowFormFields
     }); 
 
+    // This generates a template using the indexTableData.template located in spar/templates
+    // combined with modelAttributeNames to create an index.ejs view
+    var INDEX_TABLE_DATA_TEMPLATE = path.resolve(__dirname, './templates/indexTableData.template');
+    INDEX_TABLE_DATA_TEMPLATE = fs.readFileSync(INDEX_TABLE_DATA_TEMPLATE, 'utf8');
+
+    var compiledIndexTableData = _.template(INDEX_TABLE_DATA_TEMPLATE, {
+        modelAttributeNames: scope.modelAttributeNames,
+        id: scope.id,
+        modelControllerName: scope.modelControllerName
+    })
+
+
+    _.defaults(scope, {
+        modelControllerNamePluralized: scope.modelControllerName + 's'
+    }); 
+
+    // This puts erb style delimeters in the show view
+    compiledIndexTableData = compiledIndexTableData.replace(/ERBstart/g, '<%=')
+    compiledIndexTableData = compiledIndexTableData.replace(/ERBend/g, '%>')
+
+    // Add the compiled show form fields to the scope
+    _.defaults(scope, {
+      compiledIndexTableData: compiledIndexTableData
+    }); 
+
+    // This generates the indexForEach template
+    var INDEX_FOR_EACH_TEMPLATE = path.resolve(__dirname, './templates/indexForEach.template');
+    INDEX_FOR_EACH_TEMPLATE = fs.readFileSync(INDEX_FOR_EACH_TEMPLATE, 'utf8');
+
+    var compiledIndexForEach = _.template(INDEX_FOR_EACH_TEMPLATE, {
+      compiledIndexTableData: compiledIndexTableData,
+      modelControllerNamePluralized: scope.modelControllerNamePluralized,
+      modelControllerName: scope.modelControllerName
+    });
+
+    // This puts erb style delimeters in the show view
+    compiledIndexForEach = compiledIndexForEach.replace(/ERBstart/g, '<%')
+    compiledIndexForEach = compiledIndexForEach.replace(/ERBend/g, '%>')
+
+    _.defaults(scope, {
+      compiledIndexForEach: compiledIndexForEach
+    });
+
     // This generates a template using the actionParamObject.template located in spar/templates
     // to produce a the params to include.
     var ACTION_PARAM_OBJECT_TEMPLATE = path.resolve(__dirname, './templates/actionParamObject.template');
@@ -167,6 +210,11 @@ module.exports = {
 
     scope.actionFns = [compliledActions]
 
+   
+
+
+
+
     // When finished, we trigger a callback with no error
     // to begin generating files/folders as specified by
     // the `targets` below.
@@ -190,7 +238,9 @@ module.exports = {
 
     './views/:id/new.ejs': {template: 'new.template' },
 
-    './views/:id/show.ejs': {template: 'show.template' }
+    './views/:id/show.ejs': {template: 'show.template' },
+
+    './views/:id/index.ejs': {template: 'index.template' }
 
   },
 

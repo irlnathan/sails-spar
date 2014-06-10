@@ -33,5 +33,15 @@
         <%= modelControllerName %>: <%= modelControllerName %>
       });
     });
+  },
+
+  index: function(req, res, next) {
+    <%= id %>.find(function found<%= id %>s(err, <%= modelControllerName %>s) {
+      if (err) return next(err);
+      
+      res.view({
+        <%= modelControllerName %>s: <%= modelControllerName %>s
+      });
+    });
   }
  

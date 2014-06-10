@@ -1,0 +1,7 @@
+<div class="container">
+	<h3>User Administration</h3>
+	<table class='table'>
+	   <%= compiledIndexForEach %>
+	</table>
+	<a href="/test/new/" class="btn btn-sm btn-warning">New</a>
+</div>
