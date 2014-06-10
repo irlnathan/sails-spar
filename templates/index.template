@@ -1,7 +1,8 @@
 <div class="container">
-	<h3>User Administration</h3>
+	<h3><%= id %> Listing</h3>
 	<table class='table'>
-	   <%= compiledIndexForEach %>
+	<%= compiledIndexTableHeadings %>
+	<%= compiledIndexForEach %>
 	</table>
-	<a href="/test/new/" class="btn btn-sm btn-warning">New</a>
+	<a href="/test/new/">New <%= id %></a>
 </div>

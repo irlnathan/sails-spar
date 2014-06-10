@@ -1,0 +1,5 @@
+<tr>
+<% _.forEach(modelAttributeNames, function(name) { %>
+	<th> <%= name %> </th>
+<% }) %>
+</tr>

@@ -134,7 +134,7 @@ module.exports = {
       modelControllerName: scope.modelControllerName
     })
 
-    // This puts erb style delimeters in the show view
+    // This puts erb style delimeters 
     compiledShowFormFields = compiledShowFormFields.replace(/ERBstart/g, '<%=')
     compiledShowFormFields = compiledShowFormFields.replace(/ERBend/g, '%>')
 
@@ -142,6 +142,20 @@ module.exports = {
     _.defaults(scope, {
       compiledShowFormFields: compiledShowFormFields
     }); 
+
+    // This generates the table index headings using indexTableHeadings.template located in spar/templates
+    var INDEX_TABLE_HEADINGS_TEMPLATE = path.resolve(__dirname, './templates/indexTableHeadings.template');
+    INDEX_TABLE_HEADINGS_TEMPLATE = fs.readFileSync(INDEX_TABLE_HEADINGS_TEMPLATE, 'utf8');
+
+    var compiledIndexTableHeadings = _.template(INDEX_TABLE_HEADINGS_TEMPLATE, {
+        modelAttributeNames: scope.modelAttributeNames,
+        id: scope.id,
+        modelControllerName: scope.modelControllerName
+    })
+
+    _.defaults(scope, {
+        compiledIndexTableHeadings: compiledIndexTableHeadings
+    });
 
     // This generates a template using the indexTableData.template located in spar/templates
     // combined with modelAttributeNames to create an index.ejs view
@@ -151,7 +165,8 @@ module.exports = {
     var compiledIndexTableData = _.template(INDEX_TABLE_DATA_TEMPLATE, {
         modelAttributeNames: scope.modelAttributeNames,
         id: scope.id,
-        modelControllerName: scope.modelControllerName
+        modelControllerName: scope.modelControllerName,
+        compiledIndexTableHeadings: scope.compiledIndexTableHeadings
     })
 
 
@@ -159,7 +174,7 @@ module.exports = {
         modelControllerNamePluralized: scope.modelControllerName + 's'
     }); 
 
-    // This puts erb style delimeters in the show view
+    // This puts erb style delimeters 
     compiledIndexTableData = compiledIndexTableData.replace(/ERBstart/g, '<%=')
     compiledIndexTableData = compiledIndexTableData.replace(/ERBend/g, '%>')
 
@@ -178,7 +193,7 @@ module.exports = {
       modelControllerName: scope.modelControllerName
     });
 
-    // This puts erb style delimeters in the show view
+    // This puts erb style delimeters 
     compiledIndexForEach = compiledIndexForEach.replace(/ERBstart/g, '<%')
     compiledIndexForEach = compiledIndexForEach.replace(/ERBend/g, '%>')
 
