@@ -1,5 +1,7 @@
 	<%= compiledEditFormAction %>
 		<h2> Hey, you're editing a <%= modelControllerName %>... </h2>
 		<%= compiledEditFormFields %>
-		<input type="submit" value="Update" />
+		<input type="submit" value="Update <%= id %>" />
 	</form>
+	<%= compiledEditShowLink %>
+	<a href="/<%= modelControllerName %>">Back</a>

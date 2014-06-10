@@ -251,7 +251,25 @@ module.exports = {
 
     _.defaults(scope, {
       compiledEditFormAction: compiledEditFormAction
-    });    
+    }); 
+
+    // This generates a template using the editShowLink.template located in spar/templates
+    var EDIT_SHOW_LINK_TEMPLATE = path.resolve(__dirname, './templates/editShowLink.template');
+    EDIT_SHOW_LINK_TEMPLATE = fs.readFileSync(EDIT_SHOW_LINK_TEMPLATE, 'utf8');
+
+    var compiledEditShowLink = _.template(EDIT_SHOW_LINK_TEMPLATE, {
+      modelAttributeNames: scope.modelAttributeNames,
+      id: scope.id,
+      modelControllerName: scope.modelControllerName
+    })
+
+    // This puts erb style delimeters 
+    compiledEditShowLink = compiledEditShowLink.replace(/ERBstart/g, '<%=')
+    compiledEditShowLink = compiledEditShowLink.replace(/ERBend/g, '%>')
+
+    _.defaults(scope, {
+      compiledEditShowLink: compiledEditShowLink
+    });   
 
     // This generates a template using the actionParamObject.template located in spar/templates
     // to produce a the params to include.
