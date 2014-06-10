@@ -1,5 +1,5 @@
 <div class='container'>
 	<%= compiledShowFormFields %>
 </div>
-<a href="/<%= modelControllerName %>/show/ERBstart<%= modelControllerName %>.id ERBend">Edit</a> |
+<%= compiledShowEditLink %>
 <a href="/<%= modelControllerName %>">Back</a>

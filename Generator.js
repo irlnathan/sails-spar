@@ -143,6 +143,24 @@ module.exports = {
       compiledShowFormFields: compiledShowFormFields
     }); 
 
+    // This generates a template using the showEditLink.template located in spar/templates
+    var SHOW_EDIT_LINK_TEMPLATE = path.resolve(__dirname, './templates/showEditLink.template');
+    SHOW_EDIT_LINK_TEMPLATE = fs.readFileSync(SHOW_EDIT_LINK_TEMPLATE, 'utf8');
+
+    var compiledShowEditLink = _.template(SHOW_EDIT_LINK_TEMPLATE, {
+      modelAttributeNames: scope.modelAttributeNames,
+      id: scope.id,
+      modelControllerName: scope.modelControllerName
+    })
+
+    // This puts erb style delimeters 
+    compiledShowEditLink = compiledShowEditLink.replace(/ERBstart/g, '<%=')
+    compiledShowEditLink = compiledShowEditLink.replace(/ERBend/g, '%>')
+
+    _.defaults(scope, {
+      compiledShowEditLink: compiledShowEditLink
+    });
+
     // This generates the table index headings using indexTableHeadings.template located in spar/templates
     var INDEX_TABLE_HEADINGS_TEMPLATE = path.resolve(__dirname, './templates/indexTableHeadings.template');
     INDEX_TABLE_HEADINGS_TEMPLATE = fs.readFileSync(INDEX_TABLE_HEADINGS_TEMPLATE, 'utf8');
