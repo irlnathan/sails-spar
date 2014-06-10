@@ -5,7 +5,7 @@
 			<td><a href="/<%= modelControllerName %>/show/ERBstart<%= modelControllerName %>.id ERBend">Show</a></td>
 			<td><a href="/<%= modelControllerName %>/edit/ERBstart<%= modelControllerName %>.id ERBend">Edit</a></td>
 
-			<td><form action="/<%= modelControllerName %>/destroy/<%= modelControllerName.id %>" method="POST">
+			<td><form action="/<%= modelControllerName %>/destroy/ERBstart<%= modelControllerName %>.id ERBend" method="POST">
 				<input type="hidden" name="_method" value="delete"/>
 				<input type="submit" value="Delete"/>
 			</form></td>

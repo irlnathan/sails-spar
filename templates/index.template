@@ -4,5 +4,5 @@
 	<%= compiledIndexTableHeadings %>
 	<%= compiledIndexForEach %>
 	</table>
-	<a href="/test/new/">New <%= id %></a>
+	<a href="/<%= modelControllerName%>/new/">New <%= id %></a>
 </div>

@@ -68,5 +68,21 @@
 
       res.redirect('/<%= modelControllerName %>/show/' + req.param('id'));
     });
+  },
+
+  destroy: function(req, res, next) {
+
+    <%= id %>.findOne(req.param('id'), function found<%= id %>(err, <%= modelControllerName %>) {
+      if (err) return next(err);
+
+      if (!<%= modelControllerName %>) return next('<%= id %> doesn\'t exist.');
+
+      <%= id %>.destroy(req.param('id'), function <%= modelControllerName %>Destroyed(err) {
+        if (err) return next(err);
+    });        
+
+      res.redirect('/<%= modelControllerName %>');
+
+    });
   }
  
