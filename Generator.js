@@ -201,6 +201,40 @@ module.exports = {
       compiledIndexForEach: compiledIndexForEach
     });
 
+    // This generates the editFormFields template
+    var EDIT_FORM_FIELDS_TEMPLATE = path.resolve(__dirname, './templates/editFormFields.template');
+    EDIT_FORM_FIELDS_TEMPLATE = fs.readFileSync(EDIT_FORM_FIELDS_TEMPLATE, 'utf8');
+
+    var compiledEditFormFields = _.template(EDIT_FORM_FIELDS_TEMPLATE, {
+      modelAttributeNames: scope.modelAttributeNames,
+      modelControllerName: scope.modelControllerName
+    });
+
+    // This puts erb style delimeters 
+    compiledEditFormFields = compiledEditFormFields.replace(/ERBstart/g, '<%=')
+    compiledEditFormFields = compiledEditFormFields.replace(/ERBend/g, '%>')
+
+    _.defaults(scope, {
+      compiledEditFormFields: compiledEditFormFields
+    });
+
+    // This generates the editFormAction template
+    var EDIT_FORM_ACTION_TEMPLATE = path.resolve(__dirname, './templates/editFormAction.template');
+    EDIT_FORM_ACTION_TEMPLATE = fs.readFileSync(EDIT_FORM_ACTION_TEMPLATE, 'utf8');
+
+    var compiledEditFormAction = _.template(EDIT_FORM_ACTION_TEMPLATE, {
+      modelAttributeNames: scope.modelAttributeNames,
+      modelControllerName: scope.modelControllerName
+    });
+
+    // This puts erb style delimeters 
+    compiledEditFormAction = compiledEditFormAction.replace(/ERBstart/g, '<%=')
+    compiledEditFormAction = compiledEditFormAction.replace(/ERBend/g, '%>')
+
+    _.defaults(scope, {
+      compiledEditFormAction: compiledEditFormAction
+    });    
+
     // This generates a template using the actionParamObject.template located in spar/templates
     // to produce a the params to include.
     var ACTION_PARAM_OBJECT_TEMPLATE = path.resolve(__dirname, './templates/actionParamObject.template');
@@ -210,7 +244,18 @@ module.exports = {
         modelAttributeNames: scope.modelAttributeNames,
         id: scope.id,
         modelControllerName: scope.modelControllerName
-    })    
+    })  
+
+    // This generates a template using the actionUpdateParamObject.template
+    var ACTION_UPDATE_PARAM_OBJECT_TEMPLATE = path.resolve(__dirname, './templates/actionUpdateParamObject.template');
+    ACTION_UPDATE_PARAM_OBJECT_TEMPLATE = fs.readFileSync(ACTION_UPDATE_PARAM_OBJECT_TEMPLATE, 'utf8');
+
+    var compliledActionUpdateParamObject = _.template(ACTION_UPDATE_PARAM_OBJECT_TEMPLATE, {
+        modelAttributeNames: scope.modelAttributeNames,
+        id: scope.id,
+        modelControllerName: scope.modelControllerName
+    }) 
+
     
     // This generates a template using the action.template located in spar/templates
     // combined with CRUD actions to produce a controller.
@@ -219,6 +264,7 @@ module.exports = {
 
     var compliledActions = _.template(ACTION_TEMPLATE, {
         compliledActionParamObject: compliledActionParamObject,
+        compliledActionUpdateParamObject: compliledActionUpdateParamObject,
         id: scope.id,
         modelControllerName: scope.modelControllerName,
     })
@@ -255,7 +301,9 @@ module.exports = {
 
     './views/:id/show.ejs': {template: 'show.template' },
 
-    './views/:id/index.ejs': {template: 'index.template' }
+    './views/:id/index.ejs': {template: 'index.template' },
+
+    './views/:id/edit.ejs': {template: 'edit.template' }    
 
   },
 

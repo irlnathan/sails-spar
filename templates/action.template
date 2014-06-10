@@ -43,5 +43,30 @@
         <%= modelControllerName %>s: <%= modelControllerName %>s
       });
     });
+  },
+
+  edit: function(req, res, next) {
+
+    <%= id %>.findOne(req.param('id'), function found<%= id %>(err, <%= modelControllerName %>) {
+      if (err) return next(err);
+      if (!<%= modelControllerName %>) return next('<%= modelControllerName %> doesn\'t exist.');
+
+      res.view({
+        <%= modelControllerName %>: <%= modelControllerName %>
+      });
+    });
+  },
+
+  update: function(req, res, next) {
+
+    <%=compliledActionUpdateParamObject %>
+
+    <%= id %>.update(req.param('id'), paramObj, function <%= modelControllerName %>Updated(err) {
+      if (err) {
+        return res.redirect('/<%= modelControllerName %>/edit/' + req.param('id'));
+      }
+
+      res.redirect('/<%= modelControllerName %>/show/' + req.param('id'));
+    });
   }
  

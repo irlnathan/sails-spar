@@ -1,0 +1,5 @@
+	<%= compiledEditFormAction %>
+		<h2> Hey, you're editing a <%= modelControllerName %>... </h2>
+		<%= compiledEditFormFields %>
+		<input type="submit" value="Update" />
+	</form>

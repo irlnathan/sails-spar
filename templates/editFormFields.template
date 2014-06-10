@@ -1,0 +1,3 @@
+<% _.forEach(modelAttributeNames, function (name) { %>
+	<input value="ERBstart <%= modelControllerName %>.<%= name %> ERBend" name="<%= name %>" type="text"/> <br>
+<% }) %>
