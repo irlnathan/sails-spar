@@ -120,7 +120,26 @@ module.exports = {
     // Add the compiled new form fields to the scope
     _.defaults(scope, {
       compiledNewFormFields: compiledNewFormFields
-    });     
+    });    
+
+    //This generates a template using newFlash.template
+    var NEW_FLASH_TEMPLATE = path.resolve(__dirname, './templates/newFlash.template');
+    NEW_FLASH_TEMPLATE = fs.readFileSync(NEW_FLASH_TEMPLATE, 'utf8'); 
+
+    var compiledNewFlash = _.template(NEW_FLASH_TEMPLATE, {
+      modelAttributeNames: scope.modelAttributeNames,
+      id: scope.id,
+      modelControllerName: scope.modelControllerName
+    })
+
+    // This puts erb style delimeters 
+    compiledNewFlash = compiledNewFlash.replace(/ERBstart/g, '<%')
+    compiledNewFlash = compiledNewFlash.replace(/ERBend/g, '%>')
+
+    // Add the compiled show form fields to the scope
+    _.defaults(scope, {
+      compiledNewFlash: compiledNewFlash
+    });
 
 
     // This generates a template using the showFormFields.template located in spar/templates
@@ -339,7 +358,12 @@ module.exports = {
 
     './views/:id/index.ejs': {template: 'index.template' },
 
-    './views/:id/edit.ejs': {template: 'edit.template' }    
+    './views/:id/edit.ejs': {template: 'edit.template' },
+
+    './api/policies/flash.js': {template: 'flashPolicy.template' },
+
+    './config/policies.js': {template: 'policies.template' }    
+
 
   },
 

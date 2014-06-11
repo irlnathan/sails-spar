@@ -12,8 +12,10 @@
     <%= id %>.create(paramObj, function <%= modelControllerName %>Created(err, <%= modelControllerName %>) {
 
       if (err) {
-
-        // If error redirect back to sign-up page
+        console.log(err);
+        req.session.flash = {
+          err: err
+        }
         return res.redirect('/<%= modelControllerName %>/new');
       }
 
