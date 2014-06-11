@@ -106,6 +106,19 @@ module.exports = {
       modelAttributeNames: modelAttributeNames
     });   
 
+/**
+
+                    __      ___            _______                   _       _       
+                    \ \    / (_)          |__   __|                 | |     | |      
+  _ __   _____      _\ \  / / _  _____      _| | ___ _ __ ___  _ __ | | __ _| |_ ___ 
+ | '_ \ / _ \ \ /\ / /\ \/ / | |/ _ \ \ /\ / / |/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \
+ | | | |  __/\ V  V /  \  /  | |  __/\ V  V /| |  __/ | | | | | |_) | | (_| | ||  __/
+ |_| |_|\___| \_/\_/    \/   |_|\___| \_/\_/ |_|\___|_| |_| |_| .__/|_|\__,_|\__\___|
+                                                              | |                    
+                                                              |_|                    
+
+**/                                          
+
     // This generates a template using the newFormFields.template located in spar/templates
     // combined with modelAttributeNames to produce form fields for the new view derived from the model attributes
     var NEW_FORM_FIELDS_TEMPLATE = path.resolve(__dirname, './templates/newFormFields.template');
@@ -140,6 +153,18 @@ module.exports = {
     _.defaults(scope, {
       compiledNewFlash: compiledNewFlash
     });
+
+/**
+
+      _                 __      ___            _______                   _       _       
+     | |                \ \    / (_)          |__   __|                 | |     | |      
+  ___| |__   _____      _\ \  / / _  _____      _| | ___ _ __ ___  _ __ | | __ _| |_ ___ 
+ / __| '_ \ / _ \ \ /\ / /\ \/ / | |/ _ \ \ /\ / / |/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \
+ \__ \ | | | (_) \ V  V /  \  /  | |  __/\ V  V /| |  __/ | | | | | |_) | | (_| | ||  __/
+ |___/_| |_|\___/ \_/\_/    \/   |_|\___| \_/\_/ |_|\___|_| |_| |_| .__/|_|\__,_|\__\___|
+                                                                  | |                    
+                                                                  |_|                    
+**/     
 
 
     // This generates a template using the showFormFields.template located in spar/templates
@@ -179,6 +204,18 @@ module.exports = {
     _.defaults(scope, {
       compiledShowEditLink: compiledShowEditLink
     });
+
+/**
+
+  _           _         __      ___            _______                   _       _       
+ (_)         | |        \ \    / (_)          |__   __|                 | |     | |      
+  _ _ __   __| | _____  _\ \  / / _  _____      _| | ___ _ __ ___  _ __ | | __ _| |_ ___ 
+ | | '_ \ / _` |/ _ \ \/ /\ \/ / | |/ _ \ \ /\ / / |/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \
+ | | | | | (_| |  __/>  <  \  /  | |  __/\ V  V /| |  __/ | | | | | |_) | | (_| | ||  __/
+ |_|_| |_|\__,_|\___/_/\_\  \/   |_|\___| \_/\_/ |_|\___|_| |_| |_| .__/|_|\__,_|\__\___|
+                                                                  | |                    
+                                                                  |_|                                        
+**/ 
 
     // This generates the table index headings using indexTableHeadings.template located in spar/templates
     var INDEX_TABLE_HEADINGS_TEMPLATE = path.resolve(__dirname, './templates/indexTableHeadings.template');
@@ -237,6 +274,19 @@ module.exports = {
     _.defaults(scope, {
       compiledIndexForEach: compiledIndexForEach
     });
+
+/**
+
+           _ _ ___      ___            _______                   _       _       
+          | (_) \ \    / (_)          |__   __|                 | |     | |      
+   ___  __| |_| |\ \  / / _  _____      _| | ___ _ __ ___  _ __ | | __ _| |_ ___ 
+  / _ \/ _` | | __\ \/ / | |/ _ \ \ /\ / / |/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \
+ |  __/ (_| | | |_ \  /  | |  __/\ V  V /| |  __/ | | | | | |_) | | (_| | ||  __/
+  \___|\__,_|_|\__| \/   |_|\___| \_/\_/ |_|\___|_| |_| |_| .__/|_|\__,_|\__\___|
+                                                          | |                    
+                                                          |_|                    
+
+**/ 
 
     // This generates the editFormFields template
     var EDIT_FORM_FIELDS_TEMPLATE = path.resolve(__dirname, './templates/editFormFields.template');
@@ -307,7 +357,18 @@ module.exports = {
 
     _.defaults(scope, {
       compiledEditShowLink: compiledEditShowLink
-    });   
+    });  
+
+/**
+             _   _          _______                   _       _       
+            | | (_)        |__   __|                 | |     | |      
+   __ _  ___| |_ _  ___  _ __ | | ___ _ __ ___  _ __ | | __ _| |_ ___ 
+  / _` |/ __| __| |/ _ \| '_ \| |/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \
+ | (_| | (__| |_| | (_) | | | | |  __/ | | | | | |_) | | (_| | ||  __/
+  \__,_|\___|\__|_|\___/|_| |_|_|\___|_| |_| |_| .__/|_|\__,_|\__\___|
+                                               | |                    
+                                               |_|                                                                                            
+**/  
 
     // This generates a template using the actionParamObject.template located in spar/templates
     // to produce a the params to include.
@@ -345,11 +406,6 @@ module.exports = {
 
     scope.actionFns = [compliledActions]
 
-   
-
-
-
-
     // When finished, we trigger a callback with no error
     // to begin generating files/folders as specified by
     // the `targets` below.
@@ -370,6 +426,10 @@ module.exports = {
 
     // Build up the model and controller files
     './': ['model', 'controller'],
+
+    './assets/styles/custom.css': {template: 'customCSS.template' },
+
+    './assets/styles/bootstrapSpar.css': {template: 'bootstrapSparCSS.template' },  
 
     './views/:id/new.ejs': {template: 'new.template' },
 
