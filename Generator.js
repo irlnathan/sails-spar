@@ -255,6 +255,25 @@ module.exports = {
       compiledEditFormFields: compiledEditFormFields
     });
 
+    //This generates a template using editFlash.template
+    var EDIT_FLASH_TEMPLATE = path.resolve(__dirname, './templates/editFlash.template');
+    EDIT_FLASH_TEMPLATE = fs.readFileSync(EDIT_FLASH_TEMPLATE, 'utf8'); 
+
+    var compiledEditFlash = _.template(EDIT_FLASH_TEMPLATE, {
+      modelAttributeNames: scope.modelAttributeNames,
+      id: scope.id,
+      modelControllerName: scope.modelControllerName
+    })
+
+    // This puts erb style delimeters 
+    compiledEditFlash = compiledEditFlash.replace(/ERBstart/g, '<%')
+    compiledEditFlash = compiledEditFlash.replace(/ERBend/g, '%>')
+
+    // Add the compiled show form fields to the scope
+    _.defaults(scope, {
+      compiledEditFlash: compiledEditFlash
+    });
+
     // This generates the editFormAction template
     var EDIT_FORM_ACTION_TEMPLATE = path.resolve(__dirname, './templates/editFormAction.template');
     EDIT_FORM_ACTION_TEMPLATE = fs.readFileSync(EDIT_FORM_ACTION_TEMPLATE, 'utf8');
