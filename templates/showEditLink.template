@@ -1,1 +1,1 @@
-<a href="/<%= modelControllerName %>/edit/ERBstart<%= modelControllerName %>.id ERBend">Edit</a> |
+<a href="/<%= modelControllerName %>/edit/ERBstart<%= modelControllerName %>.id ERBend" class="btn btn-default">Edit</a> |

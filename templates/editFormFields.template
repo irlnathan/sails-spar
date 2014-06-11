@@ -1,3 +1,6 @@
 <% _.forEach(modelAttributeNames, function (name) { %>
-	<input value="ERBstart <%= modelControllerName %>.<%= name %> ERBend" name="<%= name %>" type="text"/> <br>
+	<div class="form-group" style="width: 400px;">
+	<label>name</label>
+	<input value="ERBstart <%= modelControllerName %>.<%= name %> ERBend" name="<%= name %>" type="text" class="form-control"/>
+	</div>
 <% }) %>
