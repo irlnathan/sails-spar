@@ -406,6 +406,21 @@ module.exports = {
 
     scope.actionFns = [compliledActions]
 
+    // This generates a template using the homePageEJS.template located in spar/templates
+    var HOMEPAGE_EJS_TEMPLATE = path.resolve(__dirname, './templates/homePageEJS.template');
+    HOMEPAGE_EJS_TEMPLATE = fs.readFileSync(HOMEPAGE_EJS_TEMPLATE, 'utf8');
+
+    var compliledHomePageEJS = _.template(HOMEPAGE_EJS_TEMPLATE, {});  
+
+    // This puts erb style delimeters 
+    compliledHomePageEJS = compliledHomePageEJS.replace(/ERBstart=/g, '<%=')
+    compliledHomePageEJS = compliledHomePageEJS.replace(/ERBstart/g, '<%')
+    compliledHomePageEJS = compliledHomePageEJS.replace(/ERBend/g, '%>')
+
+    _.defaults(scope, {
+      compliledHomePageEJS: compliledHomePageEJS
+    });   
+
     // When finished, we trigger a callback with no error
     // to begin generating files/folders as specified by
     // the `targets` below.
@@ -430,6 +445,8 @@ module.exports = {
    './assets/styles/custom.css': {template: {templatePath: 'customCSS.template', force: true } },
 
    './assets/styles/bootstrapSpar.css': {template: {templatePath: 'bootstrapSparCSS.template', force: true } },  
+
+   './views/homepage.ejs': {template: {templatePath: 'homePage.template', force: true } }, 
 
     './views/:id/new.ejs': {template: {templatePath: 'new.template', force: true } },
 
