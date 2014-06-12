@@ -427,21 +427,21 @@ module.exports = {
     // Build up the model and controller files
     './': ['model', 'controller'],
 
-    './assets/styles/custom.css': {template: 'customCSS.template' },
+   './assets/styles/custom.css': {template: {templatePath: 'customCSS.template', force: true } },
 
-    './assets/styles/bootstrapSpar.css': {template: 'bootstrapSparCSS.template' },  
+   './assets/styles/bootstrapSpar.css': {template: {templatePath: 'bootstrapSparCSS.template', force: true } },  
 
-    './views/:id/new.ejs': {template: 'new.template' },
+    './views/:id/new.ejs': {template: {templatePath: 'new.template', force: true } },
 
-    './views/:id/show.ejs': {template: 'show.template' },
+    './views/:id/show.ejs': {template: {templatePath: 'show.template', force: true } },
 
-    './views/:id/index.ejs': {template: 'index.template' },
+    './views/:id/index.ejs': {template: {templatePath: 'index.template', force: true } },
 
-    './views/:id/edit.ejs': {template: 'edit.template' },
+    './views/:id/edit.ejs': {template: {templatePath: 'edit.template', force: true } },
 
-    './api/policies/flash.js': {template: 'flashPolicy.template' },
+    './api/policies/flash.js': {template: {templatePath: 'flashPolicy.template', force: true} },
 
-    './config/policies.js': {template: 'policies.template' }    
+    './config/spar-policies.js': {template: {templatePath: 'policies.template', force: true} }    
 
 
   },
