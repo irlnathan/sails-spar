@@ -1,6 +1,6 @@
 {
   "name": "sails-generate-spar",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "sails generate spar",
   "main": "Generator.js",
   "scripts": {

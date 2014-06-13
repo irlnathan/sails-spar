@@ -1,47 +1,40 @@
 # sails-generate-spar
 
-A `spar` generator for use with the Sails command-line interface.  A `spar` generates a scaffold of a sails project.  For example:
+A `spar` generator for use with the Sails command-line interface.  A `spar` generates a scaffold of a sails project.  The scaffold consists of a user model, a controller with index, new, create, edit, update, and destroy actions, as well as the associated views.  The `spar` generator will also create a policy that enables flash messages for errors on the new and edit views.  
 
-```sh
-$sails generate spar user name:string email:email
-```
-
-will create a user model, a controller with index, new, create, edit, update, and destroy actions, as well as the associated views.  The `spar` generator will also create a policy that enables flash messages for errors on the new and edit views.
-
-Certain generators are installed by default in Sails, but they can be overridden.  Other generators create entirely new things.  Check the [Sails docs](http://sailsjs.org/#!documentation) for information on installing generator overrides / custom generators and information on building your own generators.
-
-
-
-### Installation
+### To install:
 
 ```sh
 $ npm install sails-generate-spar
 ```
 
+Next open up the `.sailsrc` file located in the root of your sails project.  Add the `spar` by typing:
 
-### Usage
+```javacript
+{
+  "generators": {
+    "modules": {
+    	"spar": "sails-generate-spar"
+    }
+  }
+}
+```
+
+### To create a spar
 
 ##### On the command line
 
 ```sh
-$ sails generate spar <a name for your spar>
+$ sails generate spar <a name for your spar> <optional: attributename:attributetype> <optional: --force>
 ```
 
+Example:
 
+```sh
+$ sails generate spar user name:string age:integer email:email
+```
 
-### Development
-
-To get started quickly and see this generator in action, ...
-
-Also see `CONTRIBUTING.md` for more information on overriding/enhancing existing generators.
-
-
-
-### Questions?
-
-See `FAQ.md`.
-
-
+The first argument will be the `model` and `controller` name.  You can add any number of model attributes and types. Finally, you can overwrite an existing spar by using the `--force` parameter.
 
 ### More Resources
 
