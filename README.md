@@ -1,5 +1,7 @@
 # sails-generate-spar
 
+# THIS PROJECT WAS MOVED TO sails-generate-scaffold
+
 A `spar` generator for use with the Sails command-line interface.  A `spar` generates a scaffold of a sails project.  The scaffold consists of a user model, a controller with index, new, create, edit, update, and destroy actions, as well as the associated views.  The `spar` generator will also create a policy that enables flash messages for errors on the new and edit views.  
 
 ### To install:
